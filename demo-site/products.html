@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Store | Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../sdk/dist/analytics.js"></script>
+    <script>
+      Analytics.init({ apiUrl: 'http://localhost:5000/api/events' });
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+    <nav class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 font-bold text-xl text-blue-600">DemoStore</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-500 hover:text-gray-900">Home</a>
+                    <a href="products.html" class="text-blue-600 font-medium">Products</a>
+                    <a href="cart.html" class="text-gray-500 hover:text-gray-900">Cart</a>
+                    <a href="contact.html" class="text-gray-500 hover:text-gray-900">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <h1 class="text-3xl font-bold mb-8">All Products</h1>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <script>
+                for(let i=1; i<=8; i++) {
+                    document.write(`
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4">
+                        <div class="h-40 bg-gray-100 rounded mb-4"></div>
+                        <h3 class="font-semibold">Product Item ${i}</h3>
+                        <p class="text-gray-500 text-sm mb-3">$${(Math.random() * 100 + 20).toFixed(2)}</p>
+                        <a href="product-details.html" class="block text-center w-full bg-blue-50 text-blue-600 py-1.5 rounded font-medium hover:bg-blue-100">View Details</a>
+                        <button class="mt-2 w-full bg-black text-white py-1.5 rounded font-medium hover:bg-gray-800">Add To Cart</button>
+                    </div>
+                    `);
+                }
+            </script>
+        </div>
+    </main>
+</body>
+</html>

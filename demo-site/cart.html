@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Store | Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../sdk/dist/analytics.js"></script>
+    <script>
+      Analytics.init({ apiUrl: 'http://localhost:5000/api/events' });
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+    <nav class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 font-bold text-xl text-blue-600">DemoStore</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-500 hover:text-gray-900">Home</a>
+                    <a href="products.html" class="text-gray-500 hover:text-gray-900">Products</a>
+                    <a href="cart.html" class="text-blue-600 font-medium">Cart (2)</a>
+                    <a href="contact.html" class="text-gray-500 hover:text-gray-900">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-4 w-full py-10 flex-1">
+        <h1 class="text-2xl font-bold mb-6">Shopping Cart</h1>
+        <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6 mb-6">
+            <div class="flex justify-between py-4 border-b">
+                <div class="flex space-x-4">
+                    <div class="w-16 h-16 bg-gray-100 rounded"></div>
+                    <div>
+                        <h4 class="font-medium">Wireless Headphones</h4>
+                        <p class="text-sm text-gray-500">Qty: 1</p>
+                    </div>
+                </div>
+                <p class="font-medium">$199.99</p>
+            </div>
+            <div class="flex justify-between py-4">
+                <div class="flex space-x-4">
+                    <div class="w-16 h-16 bg-gray-100 rounded"></div>
+                    <div>
+                        <h4 class="font-medium">Ergonomic Mouse</h4>
+                        <p class="text-sm text-gray-500">Qty: 1</p>
+                    </div>
+                </div>
+                <p class="font-medium">$59.99</p>
+            </div>
+        </div>
+        <div class="flex justify-between items-center text-xl font-bold mb-6">
+            <span>Total:</span>
+            <span>$259.98</span>
+        </div>
+        <a href="checkout.html" class="block text-center w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 text-lg">
+            Proceed to Checkout
+        </a>
+    </main>
+</body>
+</html>
