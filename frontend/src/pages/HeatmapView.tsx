@@ -198,7 +198,7 @@ export default function HeatmapView() {
         <CardHeader className="border-b border-gray-100/50 pb-4">
           <CardTitle className="text-sm font-semibold text-gray-900 flex justify-between items-center tracking-tight">
             <span className="flex items-center">
-              <MousePointer2 className="w-4 h-4 mr-2 text-indigo-500" />
+              <MousePointerClick className="w-4 h-4 mr-2 text-indigo-500" />
               Advanced Heatmap
             </span>
             <div className="flex items-center gap-2">
