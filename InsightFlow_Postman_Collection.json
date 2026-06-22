@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "b3e0c090-1c32-4d87-9bfa-8c96c4b7c6c4",
+    "name": "InsightFlow Analytics API",
+    "description": "API collection for testing InsightFlow Event Storage and Analytics layer.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Event Storage Layer",
+      "item": [
+        {
+          "name": "Track Single Event",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionId\": \"abc12345\",\n  \"eventType\": \"click\",\n  \"pageUrl\": \"/home\",\n  \"timestamp\": \"2026-06-22T10:00:00Z\",\n  \"coordinates\": {\n    \"x\": 120,\n    \"y\": 340\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/events",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "events"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Analytics Layer",
+      "item": [
+        {
+          "name": "Get Sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/sessions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "sessions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Journey",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/sessions/abc12345",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "sessions",
+                "abc12345"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Heatmap",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/heatmap?url=/home",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "heatmap"
+              ],
+              "query": [
+                {
+                  "key": "url",
+                  "value": "/home"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Analytics Overview",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/analytics/overview",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "analytics",
+                "overview"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

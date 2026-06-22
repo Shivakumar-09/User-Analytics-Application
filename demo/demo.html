@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analytics Testing Demo</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #2563eb;
+    }
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .test-area {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Analytics SDK Demo</h1>
+    <p>This page automatically loads <code>analytics.js</code> and initializes tracking.</p>
+    
+    <div class="card">
+      <h2>Interactive Elements</h2>
+      <p>Click around this area to test the auto-click tracking with coordinates.</p>
+      
+      <div class="test-area">
+        <button id="btn-primary" onclick="alert('Button clicked!')">Primary Action</button>
+        <button id="btn-secondary" style="background-color: #10b981;">Secondary Action</button>
+        <a href="#demo" id="link-test">A Test Link</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Step-by-Step Testing Flow</h2>
+      <ol>
+        <li><strong>Page View Stored:</strong> As soon as this page loads, a <code>page_view</code> event is generated and stored in the offline queue (visible in `localStorage`).</li>
+        <li><strong>Click a Button:</strong> Click the "Primary Action" button above. A <code>click</code> event with your exact <code>(x,y)</code> coordinates will be captured.</li>
+        <li><strong>Network Call:</strong> The SDK automatically batches events. After a short delay (3 seconds), you can look at the Network tab in Developer Tools to see a POST request sent to <code>http://localhost:5000/api/events</code>.</li>
+        <li><strong>Backend Processing:</strong> The Express server receives the batch and stores the documents in your MongoDB Atlas cluster.</li>
+        <li><strong>Dashboard Update:</strong> Visit your running frontend dashboard (`http://localhost:5173`). The new session, page view, and click coordinates will automatically appear in the metrics and heatmap!</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Data Verification Steps</h2>
+      <p>To verify the data in MongoDB Atlas:</p>
+      <ol>
+        <li>Log into your <strong>MongoDB Atlas</strong> dashboard.</li>
+        <li>Click on your cluster name (`Cluster0`), then click <strong>Browse Collections</strong>.</li>
+        <li>Expand the <code>insightflow</code> database and select the <code>events</code> collection.</li>
+        <li>You will see documents that look exactly like this:</li>
+      </ol>
+<pre style="background: #111827; color: #4ade80; padding: 1rem; border-radius: 6px; overflow-x: auto;">
+{
+  "sessionId": "abc12345-uuid-format",
+  "eventType": "click",
+  "pageUrl": "/demo.html",
+  "coordinates": {
+    "x": 234,
+    "y": 451
+  },
+  "timestamp": "2026-06-22T08:00:00.000Z"
+}
+</pre>
+    </div>
+
+  </div>
+
+  <!-- Load and Initialize the Analytics SDK -->
+  <script src="analytics.js"></script>
+  <script>
+    // Initialize with the URL of your local Express backend
+    Analytics.init({
+      apiUrl: "http://localhost:5000/api/events"
+    });
+  </script>
+
+</body>
+</html>

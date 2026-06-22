@@ -1,0 +1,14 @@
+{
+  "name": "insightflow",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "sdk"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces"
+  }
+}
