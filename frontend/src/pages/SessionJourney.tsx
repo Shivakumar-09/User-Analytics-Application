@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchSessionDetails } from '../services/api';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
+import { Card, CardContent } from '../components/ui/card';
 import { format } from 'date-fns';
 import { ArrowLeft, Clock, MonitorSmartphone, MousePointer2, FileText, CalendarDays, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';

@@ -12,7 +12,7 @@ export default function HeatmapView() {
     queryFn: () => fetchTopPages(10),
   });
 
-  const { data: clicks, isLoading, refetch } = useQuery({
+  const { data: clicks, isLoading } = useQuery({
     queryKey: ['heatmap', urlFilter],
     queryFn: () => fetchHeatmap(urlFilter),
     enabled: !!urlFilter,

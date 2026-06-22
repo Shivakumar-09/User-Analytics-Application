@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { fetchSessions } from '../services/api';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
+import { Card } from '../components/ui/card';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { Search, ChevronLeft, ChevronRight, Activity, CalendarDays, MousePointerClick, Clock, MonitorSmartphone } from 'lucide-react';
@@ -14,10 +14,18 @@ export default function SessionsExplorer() {
   const limit = 10;
 
   // Debounced search logic could be added here, but for simplicity we'll just trigger on enter or blur
-  const { data, isLoading } = useQuery({
+  interface SessionsResponse {
+    data: any[];
+    pagination: {
+      total: number;
+      totalPages: number;
+    };
+  }
+
+  const { data, isLoading } = useQuery<SessionsResponse>({
     queryKey: ['sessions', page, sort, order, search],
     queryFn: () => fetchSessions({ page, limit, sort, order, search }),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
 
   const handleSearch = (e: React.FormEvent) => {

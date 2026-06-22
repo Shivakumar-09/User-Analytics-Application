@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchOverview, fetchTopPages, fetchInsights } from '../services/api';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Users, MousePointerClick, Clock, Activity, ArrowUpRight, ArrowDownRight, LayoutDashboard, Monitor, Sparkles, Lightbulb } from 'lucide-react';
 import RecentActivityFeed from '../components/ui/RecentActivityFeed';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import { io } from 'socket.io-client';
 
-const socket = io(import.meta.env.VITE_API_URL || 'http://localhost:5000');
+const socket = io(import.meta.env.VITE_API_URL as string);
 
 export default function Dashboard() {
   const { data: overview, isLoading } = useQuery({
@@ -26,11 +26,9 @@ export default function Dashboard() {
     queryFn: fetchInsights,
   });
 
-  const [activeUsers, setActiveUsers] = useState(0);
-
   useEffect(() => {
-    socket.on('active_users', (count: number) => {
-      setActiveUsers(count);
+    socket.on('active_users', () => {
+      // setActiveUsers(count);
     });
     return () => {
       socket.off('active_users');
