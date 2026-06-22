@@ -136,9 +136,9 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[400px]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:h-[400px] h-auto">
         {/* Main Chart */}
-        <Card className="col-span-1 lg:col-span-2 flex flex-col border border-gray-100/80 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] rounded-2xl">
+        <Card className="col-span-1 lg:col-span-2 flex flex-col border border-gray-100/80 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.05)] rounded-2xl min-h-[350px] lg:min-h-0">
           <CardHeader>
             <CardTitle className="text-lg font-semibold text-gray-900 tracking-tight">Events Trend</CardTitle>
           </CardHeader>
@@ -165,7 +165,7 @@ export default function Dashboard() {
         </Card>
 
         {/* Sidebar Activity Feed */}
-        <div className="col-span-1 h-[400px]">
+        <div className="col-span-1 h-[400px] lg:h-full">
           <RecentActivityFeed />
         </div>
       </div>
